@@ -85,3 +85,31 @@ Well-known Symbols: Like Symbol.iterator for custom iterables, or Symbol.toStrin
 ​
 Privacy: Pseudo-private fields in classes, safe for plugins or extensions
 */
+
+/*
+temporal dead zone in js 
+
+The Temporal Dead Zone (TDZ) is the period in a block scope where let or const variables exist but cannot be accessed until their declaration line executes.
+
+Definition
+During TDZ, let/const vars are hoisted (memory allocated) but remain uninitialized—accessing them throws ReferenceError. It spans from block start to the declaration statement. var skips TDZ, defaulting to undefined.
+
+console.log(a);    // ReferenceError: Cannot access 'a' before initialization
+let a = 5;
+console.log(a);    // 5 — TDZ ends here
+
+Why It Exists
+Prevents bugs from using half-hoisted vars; encourages block-scoping discipline.
+
+Yes, exactly—TDZ applies only to let and const, not var.
+
+Why the Difference
+var gets hoisted and initialized to undefined, so you can access it early (prints undefined). let/const hoist to an uninitialized state, blocking access until declaration executes.
+
+console.log(v);  // undefined (no TDZ)
+var v = 1;
+
+console.log(l);  // ReferenceError (TDZ active)
+let l = 2;
+
+*/
