@@ -275,3 +275,10 @@ Creation → Captures parent scope → Locks this FOREVER ❌
 Object method → Still has global this!
 
 */
+/*
+<!-- defer = "parse HTML first, run JS later" -->
+<script defer src="app.js"></script>
+
+<!-- async = "download in parallel, run when ready" -->
+<script async src="analytics.js"></script>
+*/
