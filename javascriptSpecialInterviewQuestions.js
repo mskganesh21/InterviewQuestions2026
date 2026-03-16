@@ -113,3 +113,32 @@ console.log(l);  // ReferenceError (TDZ active)
 let l = 2;
 
 */
+
+/*
+This Keyword in javascript
+*/
+/*
+The “this” keyword refers to the object that the function is a property of.
+
+The value of the “this” keyword will always depend on the object that is invoking the function.\
+
+The silly way to understand the “this” keyword is, whenever the function is invoked, check the object before the dot. The value of this . keyword will always be the object before the dot.
+
+If there is no object before the dot, the value of this keyword will be the global object.
+*/
+
+const obj1 = {
+  name: "ganesh",
+  greet: function(){
+    console.log(this.name);
+  }
+}
+
+const fn2 = obj1.greet;
+
+const obj2 = {
+  name: "Sasi",
+  fn2 
+}
+
+obj2.fn2()
