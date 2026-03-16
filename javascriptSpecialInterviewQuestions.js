@@ -64,3 +64,24 @@ Passed by reference: Assignment copies the address, not data.
 
 Heap storage: Dynamic size, managed by garbage collection.
 */
+
+/*
+SYMBOLS IN JAVASCRIPT
+
+Symbols create unique, immutable identifiers in JavaScript, mainly to avoid property name collisions on objects.
+
+Primary Use Case
+Use symbols as object keys for "hidden" or private-like properties that won't clash with string keys from other code. They're non-enumerable, so they skip standard for...in or Object.keys() loops.
+
+const myKey = Symbol('secret');
+const obj = { [myKey]: 'hidden value' };
+console.log(obj[myKey]);  // 'hidden value'
+console.log(Object.keys(obj));  // [] — skips symbols
+
+Common Applications
+Libraries/Frameworks: Add metadata without overriding user properties (e.g., React internals).
+
+Well-known Symbols: Like Symbol.iterator for custom iterables, or Symbol.toStringTag for custom object tags.
+​
+Privacy: Pseudo-private fields in classes, safe for plugins or extensions
+*/
