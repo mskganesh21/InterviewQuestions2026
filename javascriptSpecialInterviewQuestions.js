@@ -142,3 +142,86 @@ const obj2 = {
 }
 
 obj2.fn2()
+
+/*
+implicit and explicit object binding in javascript 
+*/
+/*
+'this' keyword binding priority order
+
+new keyword highest
+function greet() {
+  console.log(this.name);
+}
+
+new greet();
+
+explicit binding
+implicit binding
+default binding 
+*/
+
+/*
+implicit object binding happens automatically through dot notation or square bracket
+explicit object binding happens through call,bind and apply 
+
+example:
+*/
+const obj = {
+  name: "Hello",
+  greet: function(){
+    console.log(this.name);
+  }
+}
+
+obj.greet();
+obj['greet']();
+
+/*
+Explicit Object Binding happens through call,bind and apply methods in javascript
+*/
+
+/*
+Call,bind and apply methods in javascript
+*/
+/*Call Method*/
+const obj = { name: "Ganesh" }
+
+function Greet(age) {  
+  console.log(this.name + " " +  age);
+}
+
+Greet.call(obj, 45);
+
+/*apply method*/
+/*diff b/w call and apply is apply takes the arguments in array form */
+const obj2 = {
+  name: "Ganesh2"
+}
+
+function greet2(age){
+  console.log(this.name + " " + age);
+}
+
+greet2.apply(obj2,[33]);
+
+/*
+bind method
+bind returns a new function which can be executed later 
+*/
+const obj3 = {
+  name: "Ganesh3"
+}
+
+function greet3(age){
+  console.log(this.name + " " + age);
+}
+
+const bindfunction = greet3.bind(obj3,22);
+bindfunction(); //will output 22 
+bindfunction(66); //will still output 22 because you've fixed the arguement with 22
+/*
+if you don't want to fix the arguement value to 22 
+then when doing bind don't bind the 22 value pass it when needed or calling the bindfunction
+*/
+
