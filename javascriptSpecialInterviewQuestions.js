@@ -35,3 +35,32 @@ After y=7: x → [5] (address A, unchanged)
             y → [7] (address B updated)
 
 */
+
+/*
+primitive datatypes vs non primitive datatypes
+
+Primitive types in JavaScript are the simplest, built-in data types that hold single, immutable values directly—not objects or complex structures.
+
+Definition
+Primitives represent basic values like string, number, boolean, null, undefined, symbol, and bigint. Unlike objects, they have no methods or properties of their own and store the actual value in memory (not a reference).
+
+Key Traits
+Immutable: Can't be altered in place; reassignment creates a new value.
+
+Passed by value: Copying duplicates the value exactly.
+
+Stack storage: Lightweight, allocated on the call stack for fast access.
+
+
+Non-primitive types in JavaScript are complex data structures (aka reference types) that store collections of values and are mutable, unlike primitives.
+
+Definition
+Non-primitives encompass objects, arrays, and functions—everything that's not a primitive. They don't hold values directly but reference heap-allocated data via memory addresses.
+
+Key Traits
+Mutable: Can be modified in place (e.g., obj.key = 'new').
+
+Passed by reference: Assignment copies the address, not data.
+
+Heap storage: Dynamic size, managed by garbage collection.
+*/
