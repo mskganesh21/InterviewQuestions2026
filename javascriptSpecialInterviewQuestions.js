@@ -16,3 +16,22 @@ console.log(str);
 /*
 strings are immutable for thread safety, performance optimization and safety 
 */
+
+
+/*
+
+Pass-by-Value vs Pass-by-Reference
+
+| Aspect             | Pass-by-Value               | Pass-by-Reference      |
+| ------------------ | --------------------------- | ---------------------- |
+| What’s passed      | Value copy (new stack slot) | Address/reference      |
+| Memory impact      | New location for copy       | Same original location |
+| Original modified? | No                          | Yes geeksforgeeks+1    |
+
+Initial:  x → [5] (address A)
+          y → [5] (address B, copied value)
+
+After y=7: x → [5] (address A, unchanged)
+            y → [7] (address B updated)
+
+*/
