@@ -225,3 +225,53 @@ if you don't want to fix the arguement value to 22
 then when doing bind don't bind the 22 value pass it when needed or calling the bindfunction
 */
 
+/*why arrow functions don't have explicit binding in javascript*/
+/*
+Arrow functions don't have call/bind/apply because they use LEXICAL this binding, not dynamic binding.
+
+Why Arrow Functions Ignore call/bind/apply
+Regular functions: this determined at runtime (dynamic) → call/bind/apply can change it
+Arrow functions: this locked at creation time (lexical) → call/bind/apply ignored
+
+const obj1 = { name: "ganesh" };
+const obj2 = { name: "sasi" };
+
+const regular = function() { console.log(this.name); };
+const arrow = () => { console.log(this.name); };
+
+regular.call(obj1);  // "ganesh" ✅ Dynamic this works
+arrow.call(obj1);    // undefined ❌ Lexical this (global) locked
+
+regular.call(obj2);  // "sasi" ✅ Works again
+arrow.call(obj2);    // undefined ❌ Still global scope!
+
+
+this in Object Methods (CRITICAL!)
+Arrow functions as object methods = BROKEN this:
+
+// ❌ WRONG - Arrow captures GLOBAL scope, not obj!
+const obj = {
+  name: "ganesh",
+  greet: () => console.log(this.name)  // this = window/global
+};
+obj.greet();  // undefined (not "ganesh")
+
+// ✅ CORRECT - Regular function gets obj context
+const obj2 = {
+  name: "sasi", 
+  greet: function() { console.log(this.name); }  // this = obj2
+};
+obj2.greet();  // "sasi"
+
+
+Visual Memory Model
+
+REGULAR FUNCTION:
+Runtime → Looks left of dot → Sets this = obj ✅
+
+ARROW FUNCTION:  
+Creation → Captures parent scope → Locks this FOREVER ❌
+         ↓
+Object method → Still has global this!
+
+*/
