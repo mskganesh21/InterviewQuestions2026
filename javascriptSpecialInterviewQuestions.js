@@ -548,3 +548,64 @@ arr.forEach(x => console.log(x)); // Nothing - forEach skips non-array propertie
 | Array  | Object property           | No (only 0+)     | No (forEach skips) |
 
 
+
+/*REGULAR VS ARROW FUNCTIONS IN JAVASCRIPT*/
+
+Normal (regular) functions and arrow functions both define functions in JavaScript, but they differ in syntax and behavior, especially around this, arguments, and hoisting.
+
+this binding
+Regular functions get their own this depending on how they are called (call-site: plain call, method call, call/apply/bind, event handler, etc.).
+Arrow functions do not have their own this; they lexically capture this from the surrounding scope where they are defined
+
+arguments object
+Regular functions have their own arguments object (array‑like) with all passed params.
+Arrow functions do not define arguments; you must use rest parameters instead.
+
+function regular() {
+  console.log(arguments); // works
+}
+
+const arrow = () => {
+  console.log(arguments); // ReferenceError in strict mode
+};
+
+const arrowWithRest = (...args) => {
+  console.log(args); // use this pattern
+};
+
+
+Constructors (new)
+Regular functions (declared or function expressions) can be used as constructors with new.
+Arrow functions cannot be used as constructors and will throw if called with new
+
+Hoisting
+Function declarations are hoisted; you can call them before their definition.​
+Arrow functions assigned to variables behave like variables: the variable is hoisted but uninitialized, so you cannot call them before the assignment.
+
+Aspect
+Regular function
+Arrow function
+Syntax
+function foo() {}
+const foo = () => {}
+this
+Own this, dynamic (depends on call)
+Lexical this from outer scope
+arguments
+Has its own arguments
+No own arguments, use (...args)
+Constructor (new)
+Can be used with new
+Cannot be used with new
+Hoisting
+Declarations hoisted and callable earlier
+Variable hoisted, not callable before initialization
+Object/class methods
+Suitable when using this
+Usually avoid as methods needing this
+Implicit return
+No, need return
+Yes, for single expressions
+
+
+
