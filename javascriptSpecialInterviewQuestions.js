@@ -332,3 +332,94 @@ console.log(answer);
 ✅ Reusable API clients per environment
 ✅ Perfect for hooks: useCallback + currying
 ✅ Event handlers without .bind()
+
+
+/*SCOPES OF VARIABLES IN JAVASCRIPT*/
+/*
+var has functional and global scope 
+while 
+let and const have block scope 
+
+| Keyword | Scope Type            | Scope Boundary                   |
+| ------- | --------------------- | -------------------------------- |
+| var     | Function/Global scope | {} of functions or entire script |
+| let     | Block scope           | {} of if, for, while, etc.       |
+| const   | Block scope           | Same as let                      |
+
+// FUNCTION SCOPE (var)
+function test() {
+  if (true) {
+    var x = 1;     // Function-scoped
+    let y = 2;     // Block-scoped  
+    const z = 3;   // Block-scoped
+  }
+  console.log(x);    // ✅ 1 (var leaks out)
+  // console.log(y); // ❌ ReferenceError
+  // console.log(z); // ❌ ReferenceError
+}
+
+// BLOCK SCOPE (let/const)
+if (true) {
+  let a = 10;
+  const b = 20;
+}
+// console.log(a); // ❌ ReferenceError - block ends!
+
+
+for (var i = 0; i < 3; i++) {
+  // i is accessible HERE (function scope)
+}
+console.log(i);  // 3 ✅ var survives loop
+
+for (let j = 0; j < 3; j++) {
+  // j is NOT accessible HERE (block scope)
+}
+// console.log(j); // ❌ ReferenceError
+*/
+/*
+var = function scope (leaks everywhere)
+
+let/const = block scope (stays contained)
+
+// ❌ PROBLEMATIC - var "leaks" from loop
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 100);  // Closure captures i
+}
+// Output: 3, 3, 3  ❌ All print FINAL value!
+
+// ✅ FIXED with let (block scope)
+for (let j = 0; j < 3; j++) {
+  setTimeout(() => console.log(j), 100);
+}
+// Output: 0, 1, 2  ✅ Each iteration separate!
+
+*/
+/*
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => {
+    console.log(i);
+  }, 1000);
+}
+outputs: 3,3,3
+
+Why does this happen? (simple explanation)
+Step 1: var is NOT block-scoped
+
+var is function-scoped, meaning there is only one shared i for the whole loop.
+
+Think of it like:
+
+There is just one variable i, and every iteration updates it.
+
+Step 2: Loop runs FIRST
+
+Step 3: setTimeout runs LATER
+
+The callback inside setTimeout runs after 1 second, when the loop is already finished.
+
+One-line intuition
+
+var → one shared variable → all print same final value
+
+let → new variable each loop → prints correct values
+*/
