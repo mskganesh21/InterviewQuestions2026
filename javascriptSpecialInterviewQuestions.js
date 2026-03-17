@@ -309,3 +309,26 @@ x=10;
 console.log(x); //outputs 10
 x(); //throws error that it is not a function 
 */
+
+//currying in javascript
+
+function add(a,b){
+  return a+b;
+}
+
+console.log(add(2,3));
+
+function add2(a){
+  return function(b){
+    return a+b;
+  }
+}
+
+const answer = add2(2)(7);
+console.log(answer);
+
+✅ Creates "factories" for repetitive configs
+✅ Cleaner JSX (no massive inline functions)
+✅ Reusable API clients per environment
+✅ Perfect for hooks: useCallback + currying
+✅ Event handlers without .bind()
