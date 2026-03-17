@@ -282,3 +282,30 @@ Object method → Still has global this!
 <!-- async = "download in parallel, run when ready" -->
 <script async src="analytics.js"></script>
 */
+
+// function and variable with same name 
+
+var x = 10;
+console.log(x);
+
+function x(){
+  console.log(20);
+}
+
+x();
+
+/*
+at run time javascript hoists the variables and functions 
+but function gets precedence over the variable
+hence it becomes the function first 
+
+at runtime 
+
+function x(){
+  console.log(20);
+}
+
+x=10;
+console.log(x); //outputs 10
+x(); //throws error that it is not a function 
+*/
