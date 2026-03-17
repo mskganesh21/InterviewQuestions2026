@@ -468,3 +468,22 @@ if (true) {
 
 Illegal shadowing prevents bugs from mixing hoisted var with block-scoped let/const!
 */
+
+/*CLOSURES IN JAVASCRIPT*/
+Closures are an ability of a function to remember the variables and functions that are declared in its outer scope.
+
+This ability of a function to store a variable for further reference even after it is executed is called Closure.
+
+function randomFunc(){
+  var obj1 = {name:"Vivian", age:45};
+
+  return function(){
+    console.log(obj1.name + " is "+ "awesome"); // Has access to obj1 even when the randomFunc function is executed
+
+  }
+}
+
+var initialiseClosure = randomFunc(); // Returns a function
+
+initialiseClosure();  //when this function runs we'll still get the output as vivian is awesome 
+//this ability is called closure 
