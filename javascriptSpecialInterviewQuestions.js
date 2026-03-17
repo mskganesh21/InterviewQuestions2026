@@ -507,3 +507,44 @@ The reason is the use of prototypes. As we discussed before, Array objects inher
 The javascript engine sees that the method push does not exist on the current array object and therefore, looks for the method push inside the Array prototype and it finds the method.
 
 this is prototypal inheritance in javascript
+
+/*STRING AND ARRAY INSERTION IN JAVASCRIPT*/
+
+let str = "";
+str[-4] = "S";
+console.log(str.length);  //0
+
+let arr = [];
+arr[-4] = 3;
+console.log(arr.length);  //0
+
+No, negative indexes do NOT insert from the backside. Both output 0.
+
+Why This Happens
+Strings are immutable - you cannot modify them via assignment:
+let str = "";
+str[-4] = "S";  // ❌ Does nothing - strings are immutable
+console.log(str.length);  // 0
+console.log(str[-4]);     // undefined
+
+Arrays treat negative indexes as object properties, not array elements:
+let arr = [];
+arr[-4] = 3;         // ✅ Sets property "-4" on the array object
+console.log(arr.length);  // 0 (length only counts 0+ numeric indexes)
+console.log(arr[-4]);     // 3 (property access works)
+
+let arr = [];
+arr[-4] = 3;
+console.log(arr);        // [] (empty array visually)
+console.log(arr.length); // 0
+console.log(arr.hasOwnProperty('-4')); // true
+console.log(Object.keys(arr)); // ["-4"]
+arr.forEach(x => console.log(x)); // Nothing - forEach skips non-array properties
+
+
+| Type   | Negative Index Assignment | Affects .length? | Iterable?          |
+| ------ | ------------------------- | ---------------- | ------------------ |
+| String | Does nothing (immutable)  | No               | N/A                |
+| Array  | Object property           | No (only 0+)     | No (forEach skips) |
+
+
