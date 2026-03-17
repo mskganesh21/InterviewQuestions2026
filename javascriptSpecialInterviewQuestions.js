@@ -423,3 +423,48 @@ var → one shared variable → all print same final value
 
 let → new variable each loop → prints correct values
 */
+
+/*ILLEGAL SHADOWING IN JAVASCRIPT*/
+/*
+Illegal shadowing occurs when you re-declare a variable from an outer scope using a different keyword in an inner scope. This is SyntaxError in modern JavaScript.
+
+Legal Shadowing ✅
+let x = 10;  // Outer scope
+
+function example() {
+  let x = 20;  // ✅ LEGAL - Same keyword shadows outer let
+  console.log(x);  // 20
+}
+
+Illegal Shadowing ❌
+// ❌ SYNTAX ERROR!
+let x = 10;
+
+function illegal() {
+  var x = 20;  // ERROR: Can't redeclare 'x' with var
+}
+
+// ❌ SYNTAX ERROR!
+const y = 30;
+
+if (true) {
+  var y = 40;  // ERROR: Can't shadow const with var
+}
+
+| From → To        | Status    | Reason                                 |
+| ---------------- | --------- | -------------------------------------- |
+| let → let        | ✅ Legal   | Same binding type                      |
+| let → var        | ❌ Illegal | Different temporal behavior (hoisting) |
+| const → Anything | ❌ Illegal | Constants can't be shadowed            |
+| var → var        | ✅ Legal   | Same function scope                    |
+
+✅ let → let
+✅ var → var  
+✅ const → const (but can't reassign anyway)
+
+❌ let/const → var
+❌ const → let/const  
+❌ Function params → same name
+
+Illegal shadowing prevents bugs from mixing hoisted var with block-scoped let/const!
+*/
