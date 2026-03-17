@@ -607,5 +607,36 @@ Implicit return
 No, need return
 Yes, for single expressions
 
+/*CALLBACK HELL IN JAVASCRIPT*/
+/*Callback hell refers to the problematic nesting of multiple callback functions in JavaScript, often arising from handling asynchronous operations like API calls or file reads. This creates deeply indented, pyramid-shaped code that's hard to read, maintain, and debug.*/
 
+/*EXAMPLE OF CALLBACK HELL */
+const getUserName = (cb) => {
+  console.log("Username function called");
+  setTimeout(function() {
+    cb("Ganesh");
+  }, 1000);
+}
+
+const checkPassword = (name,cb) => {
+  console.log("checkPassword function called");
+  setTimeout(() => {
+    cb(name,true);
+  }, 2000)
+}
+
+const PrintUserDetails = (name,status,cb) => {
+  console.log("PrintUserDetails function called");
+  setTimeout(() => {
+    cb();
+  }, 3000);
+};
+
+getUserName((name) => {
+  checkPassword(name,(name,status) => {
+    PrintUserDetails(name,status,() => {
+      console.log("final function called");
+    })
+  });
+});
 
