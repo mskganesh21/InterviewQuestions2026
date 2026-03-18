@@ -640,3 +640,36 @@ getUserName((name) => {
   });
 });
 
+/*WHY JAVASCRIPT IS PASS BY VALUE LANGUAGE*/
+JavaScript is strictly a pass-by-value language, but its behavior with objects can create the illusion of pass-by-reference. Primitives (like numbers, strings, and booleans) pass a direct copy of their value, while objects pass a copy of the reference to the object's location in memory.
+
+Objects: Value of the Reference
+Objects (including arrays and functions) are stored by reference in variables. Passing them copies the reference (a value like a memory address), so both point to the same object. Mutating properties affects the original, but reassigning the parameter creates a new reference copy that doesn't link back.
+
+let obj = { name: 'Alice' };
+function mutate(person) {
+  person.name = 'Bob';  // Changes shared object
+}
+mutate(obj);
+console.log(obj.name);  // 'Bob' - mutation persists
+
+function reassign(person) {
+  person = { name: 'Charlie' };  // New object, local to function
+}
+reassign(obj);
+console.log(obj.name);  // Still 'Bob' - reassignment doesn't persist
+
+JavaScript is called a pass-by-value language because every argument passed to a function receives a copy of the value—not the original variable itself—regardless of whether it's a primitive or an object. This copied value for objects happens to be the reference (like a memory address), explaining the shared mutation behavior without true reference passing.
+
+Type
+Passed Value
+Mutation Effect
+Reassignment Effect
+Primitive
+Copy of value
+None
+None
+Object
+Copy of reference
+Persists
+Local only
