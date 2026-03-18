@@ -673,3 +673,24 @@ Object
 Copy of reference
 Persists
 Local only
+
+/*LEXICAL ENVIRONMENT IN JAVASCRIPT*/
+What has to be done in order to put Lexical Scoping into practice?
+To support lexical scoping, a JavaScript function object's internal state must include not just the function's code but also a reference to the current scope chain.
+
+To implement lexical scoping in JavaScript, a function object must store not only its code but also a reference to the current scope chain (also called the lexical environment) at creation time. This enables closures, where inner functions retain access to outer variables even after the outer function executes.
+
+function outer() {
+  let outerVar = "I'm outer!";  // Variable in outer scope
+  
+  function inner() {
+    console.log(outerVar);  // Accesses outerVar via scope chain reference
+  }
+  
+  return inner;  // Returns inner function (closure)
+}
+
+const closure = outer();  // outer() executes, but inner retains scope reference
+closure();  // Logs: "I'm outer!" [web:1][web:3]
+
+Here, inner captures a reference to outer's scope chain, preserving outerVar post-execution.
