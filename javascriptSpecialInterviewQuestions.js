@@ -727,3 +727,22 @@ list.addEventListener("click", (event) => {
     console.log("Clicked:", event.target.textContent);
   }
 });
+
+/*FUNCTION EXPRESSION VS FUNCTION DECLARATION*/
+A function declaration and a function expression both create functions in JavaScript, but they differ in syntax, hoisting, and when you can call them.
+
+Aspect
+Function declaration
+Function expression
+Syntax style
+function name() {...} geeksforgeeks+1
+const f = function() {...} or let f = function() {...} stackoverflow+1
+Name
+Must have a name geeksforgeeks+1
+Can be anonymous or have an internal name stackoverflow+1
+Hoisting
+Fully hoisted; callable before definition geeksforgeeks+1
+Variable hoisted, but function value is not; must call after assignment stackoverflow+1
+Use as callback/IFEE
+Less common syntax for these patterns sitepoint+1
+Very common (callbacks, IIFEs, etc.) sitepoint+1
