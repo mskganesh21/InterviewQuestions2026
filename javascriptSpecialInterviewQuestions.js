@@ -694,3 +694,36 @@ const closure = outer();  // outer() executes, but inner retains scope reference
 closure();  // Logs: "I'm outer!" [web:1][web:3]
 
 Here, inner captures a reference to outer's scope chain, preserving outerVar post-execution.
+
+/*EVENT DELEGATION IN JAVASCRIPT*/
+Event delegation means attaching one event listener to a parent instead of many children. Events bubble up to the parent element. This reduces memory usage and improves performance. It also works well for dynamic elements. This is common in large lists.
+
+Example 1: Without event delegation
+Suppose you have a list with 1000 items and you attach an event listener to each:
+<ul id="list">
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+
+const items = document.querySelectorAll("#list li");
+
+// BAD: Many listeners
+items.forEach((li) => {
+  li.addEventListener("click", () => {
+    console.log("Clicked:", li.textContent);
+  });
+});
+
+Example 2: With event delegation
+Now attach one listener on the parent <ul> and inspect event.target😀
+
+const list = document.getElementById("list");
+
+// GOOD: Single listener, delegated
+list.addEventListener("click", (event) => {
+  // Only react if a <li> was clicked
+  if (event.target.tagName === "LI") {
+    console.log("Clicked:", event.target.textContent);
+  }
+});
